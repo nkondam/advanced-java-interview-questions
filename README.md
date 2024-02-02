@@ -1,6 +1,6 @@
 # Java Interview Questions & Answers
 
-### Table of contents {#table-of-contents}
+### Table of contents (#table-of-contents)
 
 | No | Questions                                                                                                                                                     |
 | -- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
