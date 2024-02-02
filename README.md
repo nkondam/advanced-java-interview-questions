@@ -72,3 +72,9 @@
 5. ### Describe the difference between `==` and `.equals()` for comparing objects?
 
    **[⬆ Back to Top](#table-of-contents)**
+6. ### Explain the concept of variables in Java
+
+   Variables are containers for storing data in a Java program. They have a data type (e.g., int, double) and a name. Variables must be declared before they are used, and their values can be changed during program execution.
+
+   **[⬆ Back to Top](#table-of-contents)**
+
