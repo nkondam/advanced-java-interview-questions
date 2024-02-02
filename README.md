@@ -60,21 +60,68 @@
    Java is a high-level, object-oriented programming language developed by Sun Microsystems. It is platform-independent, designed to be simple, secure, and portable across various operating systems.
 
    **[⬆ Back to Top](#table-of-contents)**
+
 2. ### Explain the main components of a Java program?
 
    **[⬆ Back to Top](#table-of-contents)**
+
 3. ### What is the difference between JDK, JRE, and JVM?
 
    **[⬆ Back to Top](#table-of-contents)**
+
 4. ### What is the purpose of the `main` method in Java?
 
    **[⬆ Back to Top](#table-of-contents)**
+
 5. ### Describe the difference between `==` and `.equals()` for comparing objects?
 
    **[⬆ Back to Top](#table-of-contents)**
+
 6. ### Explain the concept of variables in Java
 
-   Variables are containers for storing data in a Java program. They have a data type (e.g., int, double) and a name. Variables must be declared before they are used, and their values can be changed during program execution.
+      Variables are containers for storing data in a Java program. They have a data type (e.g., int, double) and a name. Variables must be declared before they are used, and their values can be changed during program execution.
 
    **[⬆ Back to Top](#table-of-contents)**
+
+11. ### What is a class in Java? Provide an example.
+    
+      A class is a blueprint for creating objects in Java. It encapsulates data and behavior. Here's a simple example:
+
+      ```java
+      public class Dog {
+         String breed;
+         int age;
+
+         void bark() {
+         System.out.println("Woof!");
+         }
+      }
+      ```
+   **[⬆ Back to Top](#table-of-contents)**
+
+16. ### What is the difference between `while` and `do-while` loops?
+
+      The `while` loop tests the condition before executing the loop body. In contrast, the `do-while` loop executes the loop body at least once, as it tests the condition after the loop body.
+
+   **[⬆ Back to Top](#table-of-contents)**
+
+21. ### What is the difference between method overloading and method overriding?
+
+      Method overloading involves defining multiple methods with the same name in the same class but with different parameter lists. Method overriding occurs when a subclass provides a specific implementation for a method that is already defined in its superclass.
+
+   **[⬆ Back to Top](#table-of-contents)**
+
+26. What are the access modifiers in Java? Provide examples.
+
+      Access modifiers control the visibility of classes, fields, methods, and constructors. The main access modifiers are `public`, `private`, `protected`, and package-private (default). Examples:
+
+      ```java
+      public class MyClass {
+         public int publicField;
+         private String privateField;
+         protected double protectedField;
+         int defaultField; // package-private
+      }
+      ``` 
+      **[⬆ Back to Top](#table-of-contents)**
 
