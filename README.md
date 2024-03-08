@@ -4,124 +4,310 @@
 
 | No | Questions|
 | -- | -------- |
-| 1  | [What is Java?](#what-is-java?)|
-| 2  | [Explain the main components of a Java program?](#explain-the-main-components-of-a-java-program?)|
-| 3  | [What is the difference between JDK, JRE, and JVM?](#what-is-the-difference-between-jdk-jre-and-jvm)|
-| 4  | [What is the purpose of the `main` method in Java?](#what-is-the-purpose-of-the-main-method-in-java)|
-| 5  | [Describe the difference between `==` and `.equals()` for comparing objects.](#describe-the-difference-between-and-equals-for-comparing-objects)|
-| 6  | [Explain the concept of variables in Java.](#explain-the-concept-of-variables-in-java)|
-| 7  | [What is a data type in Java? Provide examples.](#what-is-a-data-type-in-java-provide-examples)|
-| 8  | [How do you declare and initialize an array in Java?](#how-do-you-declare-and-initialize-an-array-in-java)|
-| 9  | [What is the difference between `int` and `Integer` in Java?](#what-is-the-difference-between-int-and-integer-in-java)|
-| 10 | [Explain the concept of object-oriented programming (OOP).](#explain-the-concept-of-object-oriented-programming-oop)|
-| 11 | [What is a class in Java? Provide an example.](#what-is-a-class-in-java-provide-an-example)|
-| 12 | [Explain the significance of the `public static void main(String[] args)` method.](#explain-the-significance-of-the-public-static-void-mainstring-args-method)|
-| 13 | [How do you take user input in Java?](#how-do-you-take-user-input-in-java)|
-| 14 | [What is the difference between `++i` and `i++`?](#what-is-the-difference-between-i-and-i)|
-| 15 | [How do you handle exceptions in Java?](#how-do-you-handle-exceptions-in-java)|
-| 16 | [What is the difference between `while` and `do-while` loops?](#what-is-the-difference-between-while-and-do-while-loops)|
-| 17 | [Explain the `if-else` statement in Java.](#explain-the-if-else-statement-in-java)|
-| 18 | [What is the purpose of the `this` keyword in Java?](#what-is-the-purpose-of-the-this-keyword-in-java)|
-| 19 | [How is inheritance implemented in Java?](#how-is-inheritance-implemented-in-java)|
-| 20 | [What is the significance of the `super` keyword in Java?](#what-is-the-significance-of-the-super-keyword-in-java)|
-| 21 | [What is the difference between method overloading and method overriding?](#what-is-the-difference-between-method-overloading-and-method-overriding)|
-| 22 | [Explain the concept of encapsulation in Java.](#explain-the-concept-of-encapsulation-in-java)|
-| 23 | [How do you create and use a constructor in Java?](#how-do-you-create-and-use-a-constructor-in-java)|
-| 24 | [What is the purpose of the `static` keyword in Java?](#what-is-the-purpose-of-the-static-keyword-in-java)|
-| 25 | [Discuss the difference between `String` and `StringBuilder` in Java.](#discuss-the-difference-between-string-and-stringbuilder-in-java)|
-| 26 | [What are the access modifiers in Java? Provide examples.](#what-are-the-access-modifiers-in-java-provide-examples) |
-| 27 | [Explain the concept of polymorphism in Java.](#explain-the-concept-of-polymorphism-in-java)|
-| 28 | [How do you implement an interface in Java?](#how-do-you-implement-an-interface-in-java)|
-| 29 | [What is the purpose of the `final` keyword in Java?](#what-is-the-puprose-of-the-final-keyword-in-java)|
-| 30 | [Discuss the concept of abstraction in Java.](#discuss-the-concept-of-abstraction-in-java)|
-| 31 | [What is a package in Java?](#what-is-a-package-in-java)|
-| 32 | [How do you use the `break` and `continue` statements in Java?](#how-do-you-use-the-break-and-continue-statements-in-java)|
-| 33 | [What is the purpose of the `return` statement in Java?](#what-is-the-purpose-of-the-return-statement-in-java)|
-| 34 | [Explain the concept of method chaining in Java.](#explain-the-concept-of-method-chaining-in-java)|
-| 35 | [How do you perform type casting in Java?](#how-do-you-perform-type-casting-in-java)  |
-| 36 | [Discuss the concept of anonymous classes in Java.](#discuss-the-concept-of-anonymous-classes-in-java)|
-| 37 | [What is the `equals()` method used for in Java?](#what-is-the-equals-method-used-for-in-java)|
-| 38 | [Explain the concept of auto-boxing and unboxing.](#explain-the-concept-of-auto-boxing-and-unboxing)|
-| 39 | [What is the `instanceof` operator in Java?](#what-is-the-instanceof-operator-in-java)|
-| 40 | [Discuss the concept of varargs in Java.](#discuss-the-concept-of-varargs-in-java)|
-| 41 | [What is the purpose of the `hashCode` method in Java?](#what-is-the-purpose-of-the-hashcode-method-in-java)|
-| 42 | [How do you handle multiple exceptions in a single `catch` block?](#how-do-you-handle-multiple-exceptions-in-a-single-catch-block)|
-| 43 | [What are the differences between `==` and `equals` for string comparison?](#what-are-the-differences-between-and-equals-for-string-comparison)|
-| 44 | [Explain the concept of the ternary operator in Java.](#explain-the-concept-of-the-ternary-operator-in-java)|
-| 45 | [How do you implement a static block in Java?](#how-do-you-implement-a-static-block-in-java)|
-| 46 | [Discuss the concept of the `transient` keyword in Java.](#discuss-the-concept-of-the-transient-keyword-in-java)|
-| 47 | [What is the purpose of the `strictfp` keyword in Java?](#what-is-the-purpose-of-the-strictfp-keyword-in-java) |
-| 48 | [Explain the concept of a singleton class in Java.](#explain-the-concept-of-a-singleton-class-in-java)|
-| 49 | [How do you implement the `Comparable` interface in Java?](#how-do-you-implement-the-comparable-interface-in-java)|
-| 50 | [Discuss the concept of the `assert` statement in Java.](#discuss-the-concept-of-the-assert-statement-in-java)|
+| 1 |[How to Manage exceptions with Completable Futures?](#How-to-Manage-exception-with-completable-futures?)|
+| 2 |[Explain the difference between findAny and findFirst, and when would you prefer one over the other?](#explain-the-difference-between-findany-and-findfirst-and-when-would-you-prefer-one-over-the-other)|
+| 3 | [When would you use Parallel Streams and why?](#when-would-you-use-parallel-streams-and-why)|
+| 4 | [What if you have a list of Orders and each Order contains Edibles Fruits with quantities and prices. You want to find the total amount spent on each Fruit across all orders](#what-if-you-have-a-list-of-orders-and-each-order-contains-edibles-fruits-with-quantities-and-prices-you-want-to-find-the-total-amount-spent-on-each-fruit-across-all-orders)|
+| 5 | [How do you stream a file?](#how-do-you-stream-a-file)|
+| 6 | [What is the purpose of the peek method in a Stream?](#what-is-the-purpose-of-the-peek-method-in-a-stream)|
+| 7 | [How do you convert a Stream to an array?](#how-do-you-convert-a-stream-to-an-array)|
+| 8 | [How can you find the average salary for all the employees who have salary greater than 50000 in each department](#how-can-you-find-the-average-salary-for-all-the-employees-who-have-salary-greater-than-50000-in-each-department)|
 
-1. ### What is Java?
 
-   Java is a high-level, object-oriented programming language developed by Sun Microsystems. It is platform-independent, designed to be simple, secure, and portable across various operating systems.
+1. ### How to Manage exceptions with Completable Futures?
+   ![Screenshot] (images/completable-feature.png)
+
+   There are several methods to handle exceptions with completable future.
+   We can use methods like
+
+   <em>exceptionally(Function<Throwable, T> fn)</em>
+
+   <em>handle(BiFunction <? super T, Throwable, ? extends U>fn)</em>
+
+   <em>whenCompelte</em>
+
+   <em>whenCompleteAsync</em>
+   
+   These methods help in creating robust asynchronous systems by allowing you to specify error-handling behavior explicitly.
+   
+   **Below is an example of using exceptionally**
+
+   ```java
+      CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+         if (Math.random() < 0.5) {
+         throw new RuntimeException("Run Time Exception!");
+         }
+         return "Success";
+      }).exceptionally(ex -> "Error: " + ex.getMessage());
+
+      future.thenAccept(System.out::println);
+   ```
+   **Below is an example of using handle**
+
+   ```java
+      CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+         if (Math.random() > 0.5) throw new RuntimeException("Error!");
+            return "Hello";
+         }).handle((result, ex) -> {
+         if (ex != null) {
+         return "Failed due to: " + ex.getMessage();
+         }
+         return result;
+      });
+
+      future.thenAccept(System.out::println);
+   ```
+
+   **Exception Handling using whenCompelte and whenCompleteAsync:**
+   whenCompelte is executed in the same thread that completes the CompletableFuture or the caller thread if the future is already complete.
+
+   whenCompelteAsync allows the completion handler to run in a different thread provided by the Executor or the default asynchronous execution facility.
+
+   The choice between them depends on whether you need the non-blocking behavior and are willing to handle tasks in a separate thread
+
+   **Below are the example of using whenCompelte and whenCompleteAsync**
+
+   ```java
+      CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> {
+         if (Math.random() > 0.5) throw new RuntimeException("Operation failed");
+         return "Operation succeeded";
+      }).whenComplete((result, ex) -> {
+         if (ex != null) {
+         System.out.println("Error: " + ex.getMessage());
+         } else {
+         System.out.println(result);
+         }
+      });
+   ```
+
+   ```java
+      // Example of whenCompleteAsync
+      CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+         if (Math.random() > 0.5) throw new RuntimeException("Operation failed");
+         return "Operation succeeded";
+      }).whenCompleteAsync((result, ex) -> {
+         if (ex != null) {
+            System.out.println("Error: " + ex.getMessage());
+         } else {
+            System.out.println(result);
+         }
+      });
+   ```
+
+   **[⬆ Back to Top](#table-of-contents)**
+   
+2. ### Explain the difference between findAny and findFirst, and when would you prefer one over the other?
+   
+   **findFirst** returns the first element of the stream, respecting the encounter order if one exists.
+
+   **findAny** can return any element from the stream, and it's more performance-friendly in parallel streams because it doesn't enforce processing order.
 
    **[⬆ Back to Top](#table-of-contents)**
 
-2. ### Explain the main components of a Java program?
+3. ### When would you use Parallel Streams and why?
 
+   We would use Parallel stream if
+   - We have a lot of data to process in the same (or a very similar) way.
+   - Ordering doesn’t matter.
+   - Items are independent of each other.
+   - if particular processing step is the bottleneck.
+   
+   Lets find the Sum of large list of integers.
+   ```java
+      package collectors;
+
+      import java.util.ArrayList;
+      import java.util.List;
+      import java.util.Random;
+
+      public class ParallelStreamsDemo {
+
+        public static void main(String[] args) {
+            // Create a large list of random integers
+            List<Integer> numbers = new ArrayList<>();
+            Random random = new Random();
+            for (int i = 0; i < 1_000_000; i++) {
+                numbers.add(random.nextInt(100));
+            }
+
+            // Calculate the sum using parallel stream
+            long startTime = System.currentTimeMillis();
+            int sum = numbers.parallelStream().reduce(0, Integer::sum);
+            long endTime = System.currentTimeMillis();
+
+            System.out.println("Sum: " + sum);
+            System.out.println("Time taken with parallel stream: " + (endTime - startTime) + " ms");
+        }
+      }
+   ```
    **[⬆ Back to Top](#table-of-contents)**
 
-3. ### What is the difference between JDK, JRE, and JVM?
+4. ### What if you have a list of Orders and each Order contains Edibles Fruits with quantities and prices. You want to find the total amount spent on each Fruit across all orders
+   This requires some skills of grouping and summarizing.
 
-   **[⬆ Back to Top](#table-of-contents)**
+   **Orders Model**
+   ```java
+      package collectors.model;
 
-4. ### What is the purpose of the `main` method in Java?
+      import java.util.List;
 
-   **[⬆ Back to Top](#table-of-contents)**
+      class Orders {
+         List<Item> items;
+         
+      }
+   ```
+   **Item Model**
+   ```java
+      package collectors.model;
 
-5. ### Describe the difference between `==` and `.equals()` for comparing objects?
+      public class Item {
+         String name;
+         double price;
+      }
+   ```
+   **Results:**Below is the total price for each Fruit for all the orders.
 
-   **[⬆ Back to Top](#table-of-contents)**
+   ```java
+      package collectors;
 
-6. ### Explain the concept of variables in Java
+      import collectors.model.Item;
+      import collectors.model.Orders;
 
-      Variables are containers for storing data in a Java program. They have a data type (e.g., int, double) and a name. Variables must be declared before they are used, and their values can be changed during program execution.
+      import java.util.Arrays;
+      import java.util.List;
+      import java.util.Map;
+      import java.util.stream.Collectors;
 
-   **[⬆ Back to Top](#table-of-contents)**
+      public class ItemPriceAggregator {
 
-11. ### What is a class in Java? Provide an example.
-    
-      A class is a blueprint for creating objects in Java. It encapsulates data and behavior. Here's a simple example:
+         public static void main(String[] args) {
 
-      ```java
-      public class Dog {
-         String breed;
-         int age;
+            List<Orders> orders = Arrays.asList(new Orders(Arrays.asList(new Item("Pears",200.45, 22),new Item("Mangoes",120.45, 45),new Item("Oranges",145.67, 22),new Item("Mandarins",207.45, 89))),
+                     new Orders(Arrays.asList(new Item("Pears",200.45, 21),new Item("Mangoes",120.45, 459),new Item("Oranges",345.67, 22),new Item("Mandarins",207.45, 89))));
 
-         void bark() {
-         System.out.println("Woof!");
+            Map<String, Double> totalAmountPerItem = orders.stream()
+                     .flatMap(order -> order.items.stream())
+                     .collect(Collectors.groupingBy(Item::getName,
+                              Collectors.summingDouble(item -> item.price * item.quantity)));
+            totalAmountPerItem.entrySet().stream()
+                     .forEach(entry -> System.out.println(entry.getKey() + " = " + entry.getValue()));
+
          }
       }
-      ```
+   ```
+   **[⬆ Back to Top](#table-of-contents)**
+5. ### How do you stream a file?
+   ```java
+      Stream<String> lines = Files.lines(Paths.get("file.txt"));
+   ```
    **[⬆ Back to Top](#table-of-contents)**
 
-16. ### What is the difference between `while` and `do-while` loops?
+6. ### What is the purpose of the peek method in a Stream?
+   peek is an intermediate operation used mainly for debugging purposes, as it allows you to perform an operation on each element of the stream as it's consumed.
 
-      The `while` loop tests the condition before executing the loop body. In contrast, the `do-while` loop executes the loop body at least once, as it tests the condition after the loop body.
+   peek is used to
 
-   **[⬆ Back to Top](#table-of-contents)**
+   >Observing Elements: is often used to observe the elements of the stream at a certain point in the pipeline.</m>
 
-21. ### What is the difference between method overloading and method overriding?
+   This is particularly useful for debugging complex stream operations to understand how elements are transformed as they pass through various stages of the stream.
 
-      Method overloading involves defining multiple methods with the same name in the same class but with different parameter lists. Method overriding occurs when a subclass provides a specific implementation for a method that is already defined in its superclass.
+   >Logging: peek can be used to log information about the elements for debugging purposes without altering the stream's processing.
+   Let’s say we have a list of integers, and we want to filter out numbers less than 10, map them to their squares, and then collect them into a list.
 
-   **[⬆ Back to Top](#table-of-contents)**
+   While we are doing this we want to see the element after filtering and also after mapping. Lets look at the below example.
+   ```java
+      import java.util.Arrays;
+      import java.util.List;
+      import java.util.stream.Collectors;
 
-26. What are the access modifiers in Java? Provide examples.
+      public class PeekExample {
+         public static void main(String[] args) {
+            List<Integer> numbers = Arrays.asList(1, 5, 10, 15, 20);
 
-      Access modifiers control the visibility of classes, fields, methods, and constructors. The main access modifiers are `public`, `private`, `protected`, and package-private (default). Examples:
-
-      ```java
-      public class MyClass {
-         public int publicField;
-         private String privateField;
-         protected double protectedField;
-         int defaultField; // package-private
+            List<Integer> squaredNumbers = numbers.stream()
+                  .filter(n -> n >= 10)
+                  .peek(n -> System.out.println("After filter: " + n))
+                  .map(n -> n * n)
+                  .peek(n -> System.out.println("After map: " + n))
+                  .collect(Collectors.toList());
+         }
       }
-      ``` 
-      **[⬆ Back to Top](#table-of-contents)**
+   ```
+   In the above example we are peeking the elements to log them at each stage that could also be used for debugging purpose.
 
+   **[⬆ Back to Top](#table-of-contents)**
+
+7. ### How do you convert a Stream to an array?
+   ```java
+      String[] array = stream.toArray(String[]::new);
+   ```
+
+8. ### How can you find the average salary for all the employees who have salary greater than 50000 in each department
+
+   **Employee Model**
+   ```java
+      package collectors.model;
+
+      import lombok.AllArgsConstructor;
+      import lombok.Getter;
+      import lombok.NoArgsConstructor;
+      import lombok.Setter;
+
+      import java.math.BigDecimal;
+      @Getter
+      @Setter
+      @AllArgsConstructor
+      @NoArgsConstructor
+      public class Employee {
+         private String name;
+         private Department department;
+         private BigDecimal salary;
+
+      }
+   ```
+
+   **Department Model**
+   ```java
+      import lombok.AllArgsConstructor;
+      import lombok.Getter;
+      import lombok.NoArgsConstructor;
+      import lombok.Setter;
+
+      @Getter
+      @Setter
+      @AllArgsConstructor
+      @NoArgsConstructor
+      public class Department {
+         private String name;
+
+      }
+   ```
+   **Finding average salary in each department greater than 50000.**
+
+   ```java
+      package collectors.model;
+
+      import java.math.BigDecimal;
+      import java.util.Arrays;
+      import java.util.List;
+      import java.util.Map;
+      import java.util.stream.Collectors;
+
+      public class AverageSalaryByDept {
+         public static void main(String[] args) {
+            List<Employee> employees = Arrays.asList(new Employee("Vikas",new Department("IT"),new BigDecimal(212345.67)),
+                     new Employee("Ravi",new Department("Commercial"),new BigDecimal(12345.67)),
+                     new Employee("Rajni",new Department("Procurment"),new BigDecimal(322345.67)),
+                     new Employee("Sinha",new Department("Commercial"),new BigDecimal(42345.67)));
+
+            Map<Department, Double> averageSalaryByDepartment = employees.stream()
+                     .filter(e -> e.getSalary().compareTo(new BigDecimal("50000")) > 0)
+                     .collect(Collectors.groupingBy(Employee::getDepartment,
+                              Collectors.mapping(Employee::getSalary,
+                                    Collectors.averagingDouble(BigDecimal::doubleValue))));
+
+            averageSalaryByDepartment.entrySet().stream()
+                     .forEach(entry -> System.out.println(entry.getKey().getName() + " = " + entry.getValue()));
+         }
+      }
+   ```
