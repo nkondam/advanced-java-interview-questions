@@ -12,10 +12,18 @@
 | 6 | [What is the purpose of the peek method in a Stream?](#what-is-the-purpose-of-the-peek-method-in-a-stream)|
 | 7 | [How do you convert a Stream to an array?](#how-do-you-convert-a-stream-to-an-array)|
 | 8 | [How can you find the average salary for all the employees who have salary greater than 50000 in each department](#how-can-you-find-the-average-salary-for-all-the-employees-who-have-salary-greater-than-50000-in-each-department)|
+| 9 | [How do you create threads in Java?](#how-do-you-create-threads-in-java)|
+|10 | [How can you disable auto configuration in Spring Boot?]()|
+|11 | [What is the difference between Patch and Post?]()|
+|12 | [What are the difference scopes for Spring Beans?]()|
+|13 | []()|
+|14 | []()|
+|15 | []()|
+|16 | []()|
 
 
 1. ### How to Manage exceptions with Completable Futures?
-   ![Screenshot] (images/completable-feature.png)
+   ![Screenshot](images/completable-feature.png)
 
    There are several methods to handle exceptions with completable future.
    We can use methods like
@@ -242,6 +250,8 @@
       String[] array = stream.toArray(String[]::new);
    ```
 
+   **[⬆ Back to Top](#table-of-contents)**
+
 8. ### How can you find the average salary for all the employees who have salary greater than 50000 in each department
 
    **Employee Model**
@@ -311,3 +321,384 @@
          }
       }
    ```
+
+   **[⬆ Back to Top](#table-of-contents)**
+
+9. ### How do you create threads in Java?
+   we can create threads in many ways, I would disucss all the ways we can spawn threads directly or indirectly. All the below methods create threads in some or the other ways , there are som more direct ways of creating and using threads in Java and there are much more abstraction available in order to create threads to achieve concurrency like Executor framework and Completable Future.
+
+   **By extending the thread class.**
+   ```java   
+      class NewThread extends Thread {
+         public void run() {
+            // Code to execute in the new thread
+         }
+      }
+   
+
+      // Creating and starting a thread
+      MyThread t = new MyThread();
+      t.start();
+      Implementing the Runnable interface.
+      class RannableThread implements Runnable {
+         public void run() {
+            // Code to execute in the new thread
+         }
+      }
+
+      // Creating and starting a thread
+      Thread t = new Thread(new MyRunnable());
+      t.start();
+      Using executor Framework.
+      ExecutorService executor = Executors.newFixedThreadPool(10);
+      executor.execute(new MyRunnable());
+      executor.shutdown();
+      Using callable and future.
+      Callable<Integer> callableTask = () -> {
+         // Task code, which returns a result
+         return 42;
+      };
+
+      Future<Integer> future = executor.submit(callableTask);
+
+      // Later, you can retrieve the result
+      Integer result = future.get();
+   ```
+   **Using Parallel Streams:**
+   Introduced in Java 8, parallel streams allow for parallel processing of collections in a functional style, abstracting away explicit thread management.
+
+   ```java
+      List<String> demoList = Arrays.asList("ABE", "BAC", "CSD", "DER", "ERT");
+      myList.parallelStream()
+            .filter(s -> s.startsWith("c"))
+            .map(String::toUpperCase)
+            .forEach(System.out::println);
+      Fork/Join Framework:
+      ForkJoinPool forkJoinPool = new ForkJoinPool(4); // Pool with 4 threads
+      Long result = forkJoinPool.invoke(new MyRecursiveTask(data));
+      Using Lambda Expression
+      Thread thread = new Thread(() -> {
+         for (int i = 1; i <= 5; i++) {
+            System.out.println(i);
+            try {
+                  // Pausing for half a second
+                  Thread.sleep(500);
+            } catch (InterruptedException e) {
+                  e.printStackTrace();
+            }
+         }
+      });
+
+      thread.start();
+   ```   
+   **Using Completable Future to run an async task**
+   ```java
+      import java.util.concurrent.CompletableFuture;
+      import java.util.concurrent.ExecutorService;
+      import java.util.concurrent.Executors;
+
+      public class CompletableFutureExample {
+         public static void main(String[] args) {
+            // Using the common ForkJoinPool
+            CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
+                  // Task to run asynchronously
+                  System.out.println("Running asynchronously in " + Thread.currentThread().getName());
+            });
+
+            // Wait for the CompletableFuture to complete
+            future.join();
+         }
+      }
+   ```
+   **Supplying a Value and processing that Asynchronously.**
+   >Supply a Task to run in another thread.
+
+   >Process the results.
+
+   >wait for all operations to complete before moving forward.
+   ```java
+      CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+         // Simulate a long-running task
+         try {
+            Thread.sleep(500); // Sleep for 500 milliseconds
+         } catch (InterruptedException e) {
+            // Handle interruption
+         }
+         return "Result of the asynchronous computation";
+      });
+
+      // Process the result of the computation
+      future.thenAccept(result -> System.out.println(result));
+
+      future.join(); // Wait for all operations to complete
+   ```
+   **Using a custom Executor:**
+   >Creating a Customer Executor
+
+   >Running asynchronously differnt tasks in threads.
+
+   >Joining all the task as a blocking operation.
+
+   >Shutting down the executor.
+   ```java
+      ExecutorService executor = Executors.newCachedThreadPool();
+
+      CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
+         System.out.println("Running asynchronously in " + Thread.currentThread().getName());
+      }, executor);
+
+      future.join();
+      executor.shutdown(); // Remember to shut down the executor
+   ```
+   **Virtual Threads As well**
+   In order to create Virtual Threads Ensure you are using JDK 19 or later, as virtual threads are introduced in Java 19 as a preview feature.
+
+   Since it’s a preview feature, you might need to enable preview features in your IDE and during compilation and execution by using the --enable-preview flag.
+
+   ```java
+      public class VirtualThread {
+         public static void main(String[] args) {
+            Thread virtualThread = Thread.ofVirtual().start(() -> {
+                  System.out.println("Running in a virtual thread: " + Thread.currentThread().getName());
+            });
+
+            // Wait for the virtual thread to complete its execution
+            virtualThread.join();
+         }
+      }
+   ```
+   Now when some one ask you how many ways you can create threads in Java so you have at least above methods available to talk about. Threads are everywhere and are very prevalent in programming and efficient usage of threads is very helpful in order to create memory efficient and CPU efficient programs. I hope you would like this quick reference and you will be able to use this further. Thanks a lot for sharing and clapping. Your support means a lot to me.
+
+   **[⬆ Back to Top](#table-of-contents)**
+
+10. ### How can you disable auto configuration in Spring Boot?
+   >Exclude Auto-Configuration Classes
+
+   You can use the exclude attribute of the @SpringBootApplication
+
+   ```java
+      import org.springframework.boot.autoconfigure.*;
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.context.annotation.Configuration;
+
+      @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+      public class MyApplication {
+         public static void main(String[] args) {
+            SpringApplication.run(MyApplication.class, args);
+         }
+      }
+   ```
+
+   Using the excludeName Attribute
+
+   ```java
+
+      @SpringBootApplication(excludeName = {"org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration"})
+      public class MyApplication {
+         public static void main(String[] args) {
+            SpringApplication.run(MyApplication.class, args);
+         }
+      }
+   ```
+   Using spring.autoconfigure.exclude Property
+
+   we can use spring.autoconfigure.exclude property in your application.properties or application.yml file. If you want to confine the exclusion to the code , this is a good method.
+
+   spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+   Using @EnableAutoConfiguration with Exclude
+   ```java
+      import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+      import org.springframework.context.annotation.Configuration;
+
+      @Configuration
+      @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
+      public class MyApplicationConfig {
+         
+      }
+   ```
+   **[⬆ Back to Top](#table-of-contents)**
+
+11. ### What is the difference between Patch and Post?
+   **POST**
+   >Purpose: POST is commonly used to create a new resource.
+
+   >Idempotency: POST requests are not idempotent, which means that making multiple identical POST requests could have different effects, such as creating multiple resources.
+
+   **Usage:**
+
+   Creating Resources: POST is often used to create a new resource within a collection. For example, POST /users might create a new user.
+   Submitting Data: It can be used for submitting form data or uploading a file.
+   Other Operations: Sometimes used for operations that don’t fit into the standard CRUD (Create, Read, Update, Delete) operations, such as performing an action (e.g., POST /orders/123/cancel).
+
+   **PATCH**
+   >The PATCH method is used for partial updates to a resource.
+
+   >It applies a partial update to the resource's state, meaning that only the specified changes are applied, and the rest of the resource remains unchanged.
+
+   1. Idempotency: PATCH can be idempotent, but it isn't strictly required to be. An idempotent PATCH request means that applying the same PATCH request multiple times will not have further effects after the initial application.
+    
+   **Usage:**
+
+   patch can be used for Partial Updates: PATCH is used when you need to update just a part of a resource's data. For example, if you have a user resource and you want to update just the user's email, you would use PATCH /users/123 with a payload that specifies the new email value.
+   In order to minimize the network bandwidth, It’s beneficial when you want to minimize the amount of data sent between the client and the server. Instead of sending the full resource, only the changes are sent.
+
+   **[⬆ Back to Top](#table-of-contents)**
+
+12. ### What are the difference scopes for Spring Beans?
+   1. **Singleton (Default)**
+   Singleton scope ensures that there is only one instance of the bean in the Spring container. Once it is defined the same instance is being returned.
+   Use Case: Most common for stateless beans where the same instance can be shared.
+   ```java
+   import org.springframework.context.annotation.Bean;
+   import org.springframework.context.annotation.Configuration;
+
+   @Configuration
+   public class ApplicationConfiguration {
+
+      @Bean // Singleton scope is the default
+      public MySingletonBean mySingletonBean() {
+         return new MySingletonBean();
+      }
+
+      static class MySingletonBean {
+         // Bean implementation
+      }
+   }
+   ```
+   2. **Prototype**
+   Prototype scope creates a new instance each time a bean is requested from the container.
+   It is the opposite of singleton scope, providing a unique instance to each request for a bean.
+
+   Use Case: Useful for stateful beans where each consumer requires a new instance.
+   ```java
+   import org.springframework.context.annotation.Bean;
+   import org.springframework.context.annotation.Configuration;
+   import org.springframework.context.annotation.Scope;
+
+   @Configuration
+   public class ApplicationConfiguration {
+
+      @Bean
+      @Scope("prototype")
+      public MyPrototypeBean myPrototypeBean() {
+         return new MyPrototypeBean();
+      }
+
+      static class MyPrototypeBean {
+         // Bean implementation
+      }
+   }
+   ```
+   3. **Request**
+   Request scope creates a bean instance for a single HTTP request; a new instance is created for each HTTP request.
+
+   Use Case: Suitable for web applications where you need to maintain bean state within a single HTTP request.
+   ```java
+   import org.springframework.context.annotation.Bean;
+   import org.springframework.context.annotation.Configuration;
+   import org.springframework.web.context.annotation.RequestScope;
+
+   @Configuration
+   public class WebAppConfig {
+
+      @Bean
+      @RequestScope
+      public MyRequestBean myRequestBean() {
+         return new MyRequestBean();
+      }
+
+      static class MyRequestBean {
+         // Bean implementation
+      }
+   }
+   ```
+    4. **Session**
+    Session scope creates a bean instance for an HTTP session; a new instance is created for each HTTP session.
+
+    Use Case: Ideal for keeping user-specific data that needs to persist across multiple HTTP requests within the same session.
+    ```java
+    import org.springframework.context.annotation.Bean;
+    import org.springframework.context.annotation.Configuration;
+    import org.springframework.web.context.annotation.SessionScope;
+
+    @Configuration
+    public class WebAppConfig {
+
+        @Bean
+        @SessionScope
+        public MySessionBean mySessionBean() {
+            return new MySessionBean();
+        }
+
+        static class MySessionBean {
+            // Bean implementation
+        }
+    }
+    ```
+    5. **Application**
+    Application scope creates a bean instance for the lifecycle of a ServletContext.
+    it’s similar to singleton scope but scoped to a web application’s lifecycle.
+
+    Use Case: Useful for shared application state objects, such as configuration data.
+    ```java
+    import org.springframework.context.annotation.Bean;
+    import org.springframework.context.annotation.Configuration;
+    import org.springframework.web.context.annotation.ApplicationScope;
+
+    @Configuration
+    public class WebAppConfig {
+
+        @Bean
+        @ApplicationScope
+        public MyApplicationBean myApplicationBean() {
+            return new MyApplicationBean();
+        }
+
+        static class MyApplicationBean {
+            // Bean implementation
+        }
+    }
+    ```
+    6. **WebSocket**
+    Scope: WebSocket scope creates a bean instance for the lifecycle of a WebSocket session; a new instance is created for each WebSocket session.
+    Use Case: Applicable for managing data within the scope of a WebSocket interaction.
+    ```java
+    import org.springframework.context.annotation.Bean;
+    import org.springframework.context.annotation.Configuration;
+    import org.springframework.web.socket.config.annotation.EnableWebSocket;
+    import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
+    import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
+    import org.springframework.web.context.annotation.WebSocketScope;
+
+    @Configuration
+    @EnableWebSocket
+    public class WebSocketConfig implements WebSocketConfigurer {
+
+        @Override
+        public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+            registry.addHandler(myHandler(), "/myHandler").setAllowedOrigins("*");
+        }
+
+        @Bean
+        @WebSocketScope
+        public MyWebSocketBean myHandler() {
+            return new MyWebSocketBean();
+        }
+
+        static class MyWebSocketBean {
+            // Bean implementation, can also implement WebSocketHandler interface
+        }
+    }
+    ```
+    Differences and Considerations:
+      - Singleton and application scopes share a long-lived nature, tied to the application lifecycle, while
+      - Prototype, request, session, and WebSocket scopes define shorter-lived, more dynamic instances.
+      - Singleton and application scoped beans are ideal for stateless behavior or shared state, whereas
+      - Prototype, request, session, and WebSocket scopes are suitable for managing stateful interactions.
+      - Prototype scope can lead to higher memory consumption and resource use due to the creation of a new instance per request.
+      - Singleton scope is resource efficient.
+      - Request, session, application, and WebSocket scopes are web-aware, meaning they are meant to be used in Web Context.
+
+   **[⬆ Back to Top](#table-of-contents)**
+
+13. 
