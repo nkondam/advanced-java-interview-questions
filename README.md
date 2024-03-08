@@ -13,9 +13,9 @@
 | 7 | [How do you convert a Stream to an array?](#how-do-you-convert-a-stream-to-an-array)|
 | 8 | [How can you find the average salary for all the employees who have salary greater than 50000 in each department](#how-can-you-find-the-average-salary-for-all-the-employees-who-have-salary-greater-than-50000-in-each-department)|
 | 9 | [How do you create threads in Java?](#how-do-you-create-threads-in-java)|
-|10 | [How can you disable auto configuration in Spring Boot?]()|
-|11 | [What is the difference between Patch and Post?]()|
-|12 | [What are the difference scopes for Spring Beans?]()|
+|10 | [How can you disable auto configuration in Spring Boot?](#how-can-you-disable-auto-configuration-in-spring-boot)|
+|11 | [What is the difference between Patch and Post?](#what-is-the-difference-between-patch-and-post)|
+|12 | [What are the difference scopes for Spring Beans?](#what-are-the-difference-scopes-for-spring-beans)|
 |13 | []()|
 |14 | []()|
 |15 | []()|
@@ -472,233 +472,231 @@
    **[⬆ Back to Top](#table-of-contents)**
 
 10. ### How can you disable auto configuration in Spring Boot?
-   >Exclude Auto-Configuration Classes
+      >Exclude Auto-Configuration Classes
 
-   You can use the exclude attribute of the @SpringBootApplication
+      You can use the exclude attribute of the @SpringBootApplication
 
-   ```java
-      import org.springframework.boot.autoconfigure.*;
-      import org.springframework.boot.SpringApplication;
-      import org.springframework.context.annotation.Configuration;
+      ```java
+         import org.springframework.boot.autoconfigure.*;
+         import org.springframework.boot.SpringApplication;
+         import org.springframework.context.annotation.Configuration;
 
-      @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-      public class MyApplication {
-         public static void main(String[] args) {
-            SpringApplication.run(MyApplication.class, args);
+         @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+         public class MyApplication {
+            public static void main(String[] args) {
+               SpringApplication.run(MyApplication.class, args);
+            }
          }
-      }
-   ```
+      ```
 
-   Using the excludeName Attribute
+      Using the excludeName Attribute
 
-   ```java
+      ```java
 
-      @SpringBootApplication(excludeName = {"org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration"})
-      public class MyApplication {
-         public static void main(String[] args) {
-            SpringApplication.run(MyApplication.class, args);
+         @SpringBootApplication(excludeName = {"org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration"})
+         public class MyApplication {
+            public static void main(String[] args) {
+               SpringApplication.run(MyApplication.class, args);
+            }
          }
-      }
-   ```
-   Using spring.autoconfigure.exclude Property
+      ```
+      Using spring.autoconfigure.exclude Property
 
-   we can use spring.autoconfigure.exclude property in your application.properties or application.yml file. If you want to confine the exclusion to the code , this is a good method.
+      we can use spring.autoconfigure.exclude property in your application.properties or application.yml file. If you want to confine the exclusion to the code , this is a good method.
 
-   spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
-   Using @EnableAutoConfiguration with Exclude
-   ```java
-      import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-      import org.springframework.context.annotation.Configuration;
+      spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      Using @EnableAutoConfiguration with Exclude
+      ```java
+         import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+         import org.springframework.context.annotation.Configuration;
 
-      @Configuration
-      @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
-      public class MyApplicationConfig {
-         
-      }
-   ```
+         @Configuration
+         @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
+         public class MyApplicationConfig {
+            
+         }
+      ```
    **[⬆ Back to Top](#table-of-contents)**
 
 11. ### What is the difference between Patch and Post?
-   **POST**
-   >Purpose: POST is commonly used to create a new resource.
+      **POST**
+      >Purpose: POST is commonly used to create a new resource.
 
-   >Idempotency: POST requests are not idempotent, which means that making multiple identical POST requests could have different effects, such as creating multiple resources.
+      >Idempotency: POST requests are not idempotent, which means that making multiple identical POST requests could have different effects, such as creating multiple resources.
 
-   **Usage:**
+      **Usage:**
 
-   Creating Resources: POST is often used to create a new resource within a collection. For example, POST /users might create a new user.
-   Submitting Data: It can be used for submitting form data or uploading a file.
-   Other Operations: Sometimes used for operations that don’t fit into the standard CRUD (Create, Read, Update, Delete) operations, such as performing an action (e.g., POST /orders/123/cancel).
+      Creating Resources: POST is often used to create a new resource within a collection. For example, POST /users might create a new user.
+      Submitting Data: It can be used for submitting form data or uploading a file.
+      Other Operations: Sometimes used for operations that don’t fit into the standard CRUD (Create, Read, Update, Delete) operations, such as performing an action (e.g., POST /orders/123/cancel).
 
-   **PATCH**
-   >The PATCH method is used for partial updates to a resource.
+      **PATCH**
+      >The PATCH method is used for partial updates to a resource.
 
-   >It applies a partial update to the resource's state, meaning that only the specified changes are applied, and the rest of the resource remains unchanged.
+      >It applies a partial update to the resource's state, meaning that only the specified changes are applied, and the rest of the resource remains unchanged.
 
-   1. Idempotency: PATCH can be idempotent, but it isn't strictly required to be. An idempotent PATCH request means that applying the same PATCH request multiple times will not have further effects after the initial application.
-    
-   **Usage:**
+      1. Idempotency: PATCH can be idempotent, but it isn't strictly required to be. An idempotent PATCH request means that applying the same PATCH request multiple times will not have further effects after the initial application.
+      
+      **Usage:**
 
-   patch can be used for Partial Updates: PATCH is used when you need to update just a part of a resource's data. For example, if you have a user resource and you want to update just the user's email, you would use PATCH /users/123 with a payload that specifies the new email value.
-   In order to minimize the network bandwidth, It’s beneficial when you want to minimize the amount of data sent between the client and the server. Instead of sending the full resource, only the changes are sent.
+      patch can be used for Partial Updates: PATCH is used when you need to update just a part of a resource's data. For example, if you have a user resource and you want to update just the user's email, you would use PATCH /users/123 with a payload that specifies the new email value.
+      In order to minimize the network bandwidth, It’s beneficial when you want to minimize the amount of data sent between the client and the server. Instead of sending the full resource, only the changes are sent.
 
    **[⬆ Back to Top](#table-of-contents)**
 
 12. ### What are the difference scopes for Spring Beans?
-   1. **Singleton (Default)**
-   Singleton scope ensures that there is only one instance of the bean in the Spring container. Once it is defined the same instance is being returned.
-   Use Case: Most common for stateless beans where the same instance can be shared.
-   ```java
-   import org.springframework.context.annotation.Bean;
-   import org.springframework.context.annotation.Configuration;
+       1. **Singleton (Default)**
+       Singleton scope ensures that there is only one instance of the bean in the Spring container. Once it is defined the same instance is being returned.
+       Use Case: Most common for stateless beans where the same instance can be shared.
+       ```java
+       import org.springframework.context.annotation.Bean;
+       import org.springframework.context.annotation.Configuration;
 
-   @Configuration
-   public class ApplicationConfiguration {
+       @Configuration
+       public class ApplicationConfiguration {
 
-      @Bean // Singleton scope is the default
-      public MySingletonBean mySingletonBean() {
-         return new MySingletonBean();
-      }
+          @Bean // Singleton scope is the default
+          public MySingletonBean mySingletonBean() {
+             return new MySingletonBean();
+          }
 
-      static class MySingletonBean {
-         // Bean implementation
-      }
-   }
-   ```
-   2. **Prototype**
-   Prototype scope creates a new instance each time a bean is requested from the container.
-   It is the opposite of singleton scope, providing a unique instance to each request for a bean.
+          static class MySingletonBean {
+             // Bean implementation
+          }
+       }
+       ```
+       2. **Prototype**
+       Prototype scope creates a new instance each time a bean is requested from the container.
+       It is the opposite of singleton scope, providing a unique instance to each request for a bean.
 
-   Use Case: Useful for stateful beans where each consumer requires a new instance.
-   ```java
-   import org.springframework.context.annotation.Bean;
-   import org.springframework.context.annotation.Configuration;
-   import org.springframework.context.annotation.Scope;
+       Use Case: Useful for stateful beans where each consumer requires a new instance.
+       ```java
+       import org.springframework.context.annotation.Bean;
+       import org.springframework.context.annotation.Configuration;
+       import org.springframework.context.annotation.Scope;
 
-   @Configuration
-   public class ApplicationConfiguration {
+       @Configuration
+       public class ApplicationConfiguration {
 
-      @Bean
-      @Scope("prototype")
-      public MyPrototypeBean myPrototypeBean() {
-         return new MyPrototypeBean();
-      }
+          @Bean
+          @Scope("prototype")
+          public MyPrototypeBean myPrototypeBean() {
+             return new MyPrototypeBean();
+          }
 
-      static class MyPrototypeBean {
-         // Bean implementation
-      }
-   }
-   ```
-   3. **Request**
-   Request scope creates a bean instance for a single HTTP request; a new instance is created for each HTTP request.
+          static class MyPrototypeBean {
+             // Bean implementation
+          }
+       }
+       ```
+       3. **Request**
+       Request scope creates a bean instance for a single HTTP request; a new instance is created for each HTTP request.
 
-   Use Case: Suitable for web applications where you need to maintain bean state within a single HTTP request.
-   ```java
-   import org.springframework.context.annotation.Bean;
-   import org.springframework.context.annotation.Configuration;
-   import org.springframework.web.context.annotation.RequestScope;
+       Use Case: Suitable for web applications where you need to maintain bean state within a single HTTP request.
+       ```java
+       import org.springframework.context.annotation.Bean;
+       import org.springframework.context.annotation.Configuration;
+       import org.springframework.web.context.annotation.RequestScope;
 
-   @Configuration
-   public class WebAppConfig {
+       @Configuration
+       public class WebAppConfig {
 
-      @Bean
-      @RequestScope
-      public MyRequestBean myRequestBean() {
-         return new MyRequestBean();
-      }
+          @Bean
+          @RequestScope
+          public MyRequestBean myRequestBean() {
+             return new MyRequestBean();
+          }
 
-      static class MyRequestBean {
-         // Bean implementation
-      }
-   }
-   ```
-    4. **Session**
-    Session scope creates a bean instance for an HTTP session; a new instance is created for each HTTP session.
+          static class MyRequestBean {
+             // Bean implementation
+          }
+       }
+       ```
+        4. **Session**
+        Session scope creates a bean instance for an HTTP session; a new instance is created for each HTTP session.
 
-    Use Case: Ideal for keeping user-specific data that needs to persist across multiple HTTP requests within the same session.
-    ```java
-    import org.springframework.context.annotation.Bean;
-    import org.springframework.context.annotation.Configuration;
-    import org.springframework.web.context.annotation.SessionScope;
+        Use Case: Ideal for keeping user-specific data that needs to persist across multiple HTTP requests within the same session.
+        ```java
+        import org.springframework.context.annotation.Bean;
+        import org.springframework.context.annotation.Configuration;
+        import org.springframework.web.context.annotation.SessionScope;
 
-    @Configuration
-    public class WebAppConfig {
+        @Configuration
+        public class WebAppConfig {
 
-        @Bean
-        @SessionScope
-        public MySessionBean mySessionBean() {
-            return new MySessionBean();
+            @Bean
+            @SessionScope
+            public MySessionBean mySessionBean() {
+                return new MySessionBean();
+            }
+
+            static class MySessionBean {
+                // Bean implementation
+            }
         }
+        ```
+        5. **Application**
+        Application scope creates a bean instance for the lifecycle of a ServletContext.
+        it’s similar to singleton scope but scoped to a web application’s lifecycle.
 
-        static class MySessionBean {
-            // Bean implementation
+        Use Case: Useful for shared application state objects, such as configuration data.
+        ```java
+        import org.springframework.context.annotation.Bean;
+        import org.springframework.context.annotation.Configuration;
+        import org.springframework.web.context.annotation.ApplicationScope;
+
+        @Configuration
+        public class WebAppConfig {
+
+            @Bean
+            @ApplicationScope
+            public MyApplicationBean myApplicationBean() {
+                return new MyApplicationBean();
+            }
+
+            static class MyApplicationBean {
+                // Bean implementation
+            }
         }
-    }
-    ```
-    5. **Application**
-    Application scope creates a bean instance for the lifecycle of a ServletContext.
-    it’s similar to singleton scope but scoped to a web application’s lifecycle.
+        ```
+        6. **WebSocket**
+        Scope: WebSocket scope creates a bean instance for the lifecycle of a WebSocket session; a new instance is created for each WebSocket session.
+        Use Case: Applicable for managing data within the scope of a WebSocket interaction.
+        ```java
+        import org.springframework.context.annotation.Bean;
+        import org.springframework.context.annotation.Configuration;
+        import org.springframework.web.socket.config.annotation.EnableWebSocket;
+        import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
+        import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
+        import org.springframework.web.context.annotation.WebSocketScope;
 
-    Use Case: Useful for shared application state objects, such as configuration data.
-    ```java
-    import org.springframework.context.annotation.Bean;
-    import org.springframework.context.annotation.Configuration;
-    import org.springframework.web.context.annotation.ApplicationScope;
+        @Configuration
+        @EnableWebSocket
+        public class WebSocketConfig implements WebSocketConfigurer {
 
-    @Configuration
-    public class WebAppConfig {
+            @Override
+            public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+                registry.addHandler(myHandler(), "/myHandler").setAllowedOrigins("*");
+            }
 
-        @Bean
-        @ApplicationScope
-        public MyApplicationBean myApplicationBean() {
-            return new MyApplicationBean();
+            @Bean
+            @WebSocketScope
+            public MyWebSocketBean myHandler() {
+                return new MyWebSocketBean();
+            }
+
+            static class MyWebSocketBean {
+                // Bean implementation, can also implement WebSocketHandler interface
+            }
         }
-
-        static class MyApplicationBean {
-            // Bean implementation
-        }
-    }
-    ```
-    6. **WebSocket**
-    Scope: WebSocket scope creates a bean instance for the lifecycle of a WebSocket session; a new instance is created for each WebSocket session.
-    Use Case: Applicable for managing data within the scope of a WebSocket interaction.
-    ```java
-    import org.springframework.context.annotation.Bean;
-    import org.springframework.context.annotation.Configuration;
-    import org.springframework.web.socket.config.annotation.EnableWebSocket;
-    import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
-    import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
-    import org.springframework.web.context.annotation.WebSocketScope;
-
-    @Configuration
-    @EnableWebSocket
-    public class WebSocketConfig implements WebSocketConfigurer {
-
-        @Override
-        public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-            registry.addHandler(myHandler(), "/myHandler").setAllowedOrigins("*");
-        }
-
-        @Bean
-        @WebSocketScope
-        public MyWebSocketBean myHandler() {
-            return new MyWebSocketBean();
-        }
-
-        static class MyWebSocketBean {
-            // Bean implementation, can also implement WebSocketHandler interface
-        }
-    }
-    ```
-    Differences and Considerations:
-      - Singleton and application scopes share a long-lived nature, tied to the application lifecycle, while
-      - Prototype, request, session, and WebSocket scopes define shorter-lived, more dynamic instances.
-      - Singleton and application scoped beans are ideal for stateless behavior or shared state, whereas
-      - Prototype, request, session, and WebSocket scopes are suitable for managing stateful interactions.
-      - Prototype scope can lead to higher memory consumption and resource use due to the creation of a new instance per request.
-      - Singleton scope is resource efficient.
-      - Request, session, application, and WebSocket scopes are web-aware, meaning they are meant to be used in Web Context.
+        ```
+        Differences and Considerations:
+          - Singleton and application scopes share a long-lived nature, tied to the application lifecycle, while
+          - Prototype, request, session, and WebSocket scopes define shorter-lived, more dynamic instances.
+          - Singleton and application scoped beans are ideal for stateless behavior or shared state, whereas
+          - Prototype, request, session, and WebSocket scopes are suitable for managing stateful interactions.
+          - Prototype scope can lead to higher memory consumption and resource use due to the creation of a new instance per request.
+          - Singleton scope is resource efficient.
+          - Request, session, application, and WebSocket scopes are web-aware, meaning they are meant to be used in Web Context.
 
    **[⬆ Back to Top](#table-of-contents)**
-
-13. 
