@@ -16,7 +16,7 @@
 |10 | [How can you disable auto configuration in Spring Boot?](#how-can-you-disable-auto-configuration-in-spring-boot)|
 |11 | [What is the difference between Patch and Post?](#what-is-the-difference-between-patch-and-post)|
 |12 | [What are the difference scopes for Spring Beans?](#what-are-the-difference-scopes-for-spring-beans)|
-|13 | []()|
+|13 | [Describe and compare fail-fast and fail-safe iterators, Give examples](#describe-and-compare-fail-fast-and-fail-safe-iterators-give-examples)|
 |14 | []()|
 |15 | []()|
 |16 | []()|
@@ -700,3 +700,12 @@
           - Request, session, application, and WebSocket scopes are web-aware, meaning they are meant to be used in Web Context.
 
    **[⬆ Back to Top](#table-of-contents)**
+
+13. ### Describe and compare fail-fast and fail-safe iterators, Give examples
+      The main distinctions between fail-fast and fail-safe iterators is whether or not the collection can be modified while it is being iterated. Fail-safe iterator allows this; fail-fast iterator does not
+
+      **fail-fast** Iterators operate directly on the collections itself. During iterations, fail-fasat iterators fail as soon as they realize that the collection is being modified (added, modified, remove) and will throw an concurrentModificationException. Some examples include ArrayList, HashSet and HashMap
+
+      **fail-safe** iterators operate on cloned copy of the collection and therefore do not throw an exception is modified during iteration. Examples would include iterators returned by ConcurrentHashMap or CopyOnWriteArrayList
+
+
